@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'><title>Tabs Component Developer Manual</title>
+<style>
+body{font-family:Arial;margin:40px;line-height:1.6;} h1{color:#003366;} pre{background:#eee;padding:10px;}
+</style></head><body>
+<h1>Tabs Component — Developer Manual</h1>
+<p>The TabsExt component provides keyboard-accessible, AJAX-powered tab navigation for switching between different content areas without reloading the page.</p>
+<h2>Introduction</h2>
+<p>Tabs are defined using elements with the <code>tab</code> class and a <code>data-url</code> attribute. Selecting a tab triggers an AJAX request that loads content into a paired <code>tabContent</code> container. Tabs support arrow-key navigation and automatic ARIA labeling.</p>
+<h2>Usage Example</h2>
+<pre><code>&lt;div class="tabs"&gt;
+  &lt;span class="tab" data-url="/ajax/info"&gt;Info&lt;/span&gt;
+  &lt;span class="tab" data-url="/ajax/settings"&gt;Settings&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="tabContent"&gt;&lt;/div&gt;</code></pre>
+<p>When a tab is clicked, the target content is fetched via AJAX and rendered inside the content container.</p>
+<h2>Initialization</h2>
+<pre><code>Object.assign(tabElement, TabsExt);
+tabElement.loadTab();</code></pre>
+<h2>Features</h2>
+<ul>
+<li>Automatic AJAX content loading</li>
+<li>Keyboard arrow navigation</li>
+<li>Accessible ARIA roles and focus handling</li>
+<li>Vertical and horizontal tab layouts supported</li>
+</ul>
+</body></html>

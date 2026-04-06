@@ -1,0 +1,59 @@
+div.tabsContainer {
+	min-width:650px;
+	padding:20px 10px;
+	/*position:relative;*/
+}
+div.tabContent {
+	padding:10px;
+	border: 1px solid rgba(0, 112, 115, 1);
+	min-height:150px;
+	background-color:white;
+	border-radius: 2px;
+	-webkit-box-shadow: 3px 3px 6px gray ;
+	box-shadow: 3px 3px 6px gray;
+}
+span.tab {
+	border-top-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	border:1px solid gray;
+	padding:7px;
+	border-bottom:0;
+	cursor:pointer;
+	color:#007073;
+	background-color:rgba(0,112,115,.1);
+	margin-right:5px;
+}
+div.tabs {
+	padding:7px;
+}
+div.tabs span.selected {
+	position:relative;
+	top:1px;
+	background-color:white;
+	font-weight:bold;
+	border-top:5px solid;
+	transition: border 0.1s ease 0s;
+}
+div.tabs span.selected span.count {
+	display:none;
+}
+span.tab span.count {
+	background: #a90329; /* Old browsers */
+	background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	color: #ffffff;
+	display: inline-block;
+	margin-left:-1.5em;
+	font-weight: normal;
+	text-align: center;
+	width: 1.5em;
+	position:relative;
+	top:-1.2em;
+	left:.8em;
+}

@@ -1,0 +1,40 @@
+div.vtabsContainer {
+	padding:20px 10px;
+	position:relative;
+}
+div.vtabs {
+    float: left;
+	width:130px;
+	padding:0;
+}
+div.vtabContent {
+    background-color: white;
+    border-radius: 0 5px 5px;
+    margin-left: 130px;
+    min-height: 225px;
+    padding: 10px;
+	border:1px solid rgba(0,112,115,1);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+div.vtab {
+    border-bottom-left-radius: 5px;
+	border:1px solid;
+    border-right: 0 none !important;
+    border-top-left-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 7px 4px;
+	color:#007073;
+	background-color:rgba(0,112,115,.1);
+	display:block;
+}
+div.vtabsContainer .selected {
+    background-color: white !important;
+	border:1px solid;
+    border-left: 5px solid !important;
+    font-weight: bold;
+    left: 1px;
+    position: relative;
+	transition: border 0.1s ease 0s;
+}

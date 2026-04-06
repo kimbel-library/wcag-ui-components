@@ -1,0 +1,105 @@
+div.dataTableContainer {
+    max-height: 350px;
+    overflow-y: auto;
+}
+div.showFullTable {
+    max-height: none;
+}
+table.dataTable {
+    border-collapse: collapse;
+    margin-bottom: -1px;
+    width: 100%;
+}
+table.dataTable th, table.dataTable td {
+    border: 1px solid rgba(0, 112, 115, 0.5);
+    padding: 3px 10px;
+}
+table.dataTable th {
+	cursor: pointer;
+    /*background-color: rgba(0, 112, 115, 0.1);*/
+	background-color: rgb(225, 236, 238);
+    color: rgb(0, 112, 115);
+    font-weight: bold;
+	position:sticky;
+	top:0;
+}
+table.dataTable th button.sort {
+	float:right;
+	color: inherit;
+	background-color:inherit;
+	border:0;
+}
+table.dataTable th.noSort { cursor: auto; }
+table.dataTable caption {
+	text-align:center;
+	padding:0 0 5px 5px;
+	font-size:1.8em;
+	font-weight:bold;
+}
+table.dataTable tr.selectable:hover td {
+    background-color: #fef5be !important; 
+	transition:background-color 1s ease 0s;
+    cursor: pointer;
+}
+table.dataTable tr.highlight td {
+    background-color: #fef5be !important;
+    cursor: default;
+}
+table.dataTable tr.hide {
+	display:none;
+}
+table.dataTable td { vertical-align:top; }
+div.dataTableStatus table {
+	border-collapse:collapse;
+    border: 1px solid rgba(0, 112, 115, 0.5);
+	width:100%;
+}
+div.dataTableStatus table td {
+    background-color: rgba(0,112,115, 0.1);
+    color: rgb(0,112,115);
+    padding: 0 5px;
+	cursor:row-resize;
+	font-size:1em;
+	font-weight:normal;
+}
+div.dataTableStatus table td i.fa { 
+	padding: 0 5px 0 0;
+	font-size:1em; 
+}
+div.dataTableStatus table td.dataTableToggle {
+	cursor:pointer;
+	width:1px;
+}
+div.dataTablePages {
+	float:right;
+	line-height:1.4em;
+	font-size:inherit;
+	cursor:default;
+}
+span.dataTablePage {
+	font-size:inherit;
+	font-weight:inherit;
+	cursor:pointer;
+	padding:0 5px;
+}
+span.prev {
+	padding-left:0;
+}
+span.next {
+	padding-right:0;
+}
+span.dataTablePage:hover {
+	text-decoration:underline;
+}
+div.dataTableControls input.search {
+	display:inline;
+	float:right;
+}
+div.dataTableControls {
+	padding:10px 0;
+	min-height:1.5em;
+}
+div.dataTableStatus td button { 	
+	color: inherit;
+	border:0; 
+}

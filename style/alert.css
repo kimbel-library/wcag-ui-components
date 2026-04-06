@@ -1,0 +1,76 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+/*@import url(https://use.fontawesome.com/releases/v5.4.1/css/all.css);*/
+.box {
+	/*border-radius: 5px;
+	margin:0 auto 10px auto;*/
+	padding:15px 0;
+	/*text-align:center;*/
+	border-bottom:1px solid;
+}
+.messagebox {
+	border-radius: 5px;
+	-webkit-box-shadow: 3px 3px 6px gray ;
+	box-shadow: 3px 3px 6px gray;
+	z-index: 200;
+	padding: 25px;
+	/*text-align: center;*/
+	font-weight: bold;
+	font-size:1.3em;
+    position: absolute;
+	top:15%;
+	left:50%;
+	transform:translate(-50%,-15%);
+	-webkit-transform: translate(-50%,-15%);
+}
+/* Coastal */
+.info {
+	background-color: rgba(0, 112, 115, 0.1);
+	border-bottom: 1px solid #b7bdbf;
+	color: #a27752;
+}
+div.tabContent .box { border: 1px solid; }
+div.tabContent .info { border: 1px solid #b7bdbf; }
+.infoText { color: #00529B !important; }
+ /* Caution Yellow */
+.alert {
+	color: #9F6000 !important;
+	background-color: #FEEFB3 !important;
+}
+.alertText { color: #9F6000 !important; }
+/* Green For Go */
+.success {
+    color: #4F8A10 !important;
+    background-color: #DFF2BF !important;
+}
+.successText { color: #4F8A10 !important;}
+/* Stop On Red */
+.error {
+	color: #D63301 !important;
+	background-color: #FFCCBA !important;
+}
+.errorText { color: #D63301 !important; }
+.loadingText { color: rgb(0,112,115) !important; }
+.info i.fa, .infoText i.fa,
+.success i.fa, .successText i.fa, 
+.alert i.fa, .alertText i.fa, 
+.error i.fa, .errorText i.fa {
+    font-size:1.2em;
+	padding:0 10px;
+}
+.loadingText i.fa { padding:0 10px; }
+table.scrollTable .infoText,
+table.scrollTable .successText, 
+table.scrollTable .alertText, 
+table.scrollTable .errorText {
+	float:right;
+}
+.tooltip {
+	cursor:pointer;
+}
+
+/*
+info: <i class="fa fa-info-circle"></i>
+alert: <i class="fa fa-warning"></i>
+success: <i class="fa fa-check"></i>
+error: <i class="fa fa-times-circle"></i>
+*/

@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'><title>Modal Component Developer Manual</title>
+<style>
+body{font-family:Arial;margin:40px;line-height:1.6;} h1{color:#003366;} pre{background:#eee;padding:10px;}
+</style></head><body>
+<h1>Modal Component — Developer Manual</h1>
+<p>The ModalExt component provides dynamic, AJAX-loaded modal windows with keyboard accessibility, optional drag support, automatic focus handling, and expand/compress capabilities. It is used throughout the UI to display forms, dialogs, and content overlays.</p>
+<h2>Introduction</h2>
+<p>The modal system enables developers to attach modal behavior to any element by giving it the <code>modal</code> class and providing <code>data-url</code> and <code>data-action</code> attributes. When activated, the modal fetches content from the server, inserts it into a styled overlay window, and manages user interaction.</p>
+<h2>Usage Example</h2>
+<pre><code>&lt;div class="modal" data-url="/ajax/editUser" data-action="edit"&gt;
+  Edit User
+&lt;/div&gt;</code></pre>
+<p>After calling <code>setupComponents()</code>, clicking the element automatically loads the modal content and displays it.</p>
+<h2>Initialization</h2>
+<pre><code>Object.assign(modalElement, ModalExt);
+modalElement.init();</code></pre>
+<h2>Features</h2>
+<ul>
+<li>Dynamic AJAX loading</li>
+<li>Draggable modal windows</li>
+<li>Escape key closes modal</li>
+<li>Automatic focus and accessibility support</li>
+<li>Expandable full-screen mode</li>
+</ul>
+</body></html>

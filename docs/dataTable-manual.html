@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CCU Libraries - DataTable Component — Developer Manual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Highlight.js CSS Theme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<!-- Highlight.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<style>
+    body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background: #fafafa;
+        color: #222;
+    }
+    header, footer {
+        background: #003366;
+        color: white;
+        padding: 15px 25px;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 26px;
+    }
+    main {
+        max-width: 1000px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    }
+    h2 {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 4px;
+        margin-top: 40px;
+    }
+    pre {
+        border-radius: 6px;
+        overflow-x: auto;
+        padding: 0 !important;
+    }
+    nav {
+        background: #f0f4f8;
+        padding: 20px;
+        border: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+    nav ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    nav li {
+        margin-bottom: 6px;
+    }
+    footer {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>DataTable Component — Developer Manual</h1>
+</header>
+
+<main>
+
+<nav>
+    <h3>Table of Contents</h3>
+    <ul>
+        <li>1. Introduction</li>
+        <li>2. Component Overview</li>
+        <li>3. Markup Requirements</li>
+        <li>4. Initialization & Lifecycle</li>
+        <li>5. Data Loading (AJAX)</li>
+        <li>6. Rendering & Pagination</li>
+        <li>7. Row Selection System</li>
+        <li>8. Searching</li>
+        <li>9. Sorting</li>
+        <li>10. Highlight‑Only Mode</li>
+        <li>11. Resizing</li>
+        <li>12. Event Hooks</li>
+        <li>13. Example Implementation</li>
+    </ul>
+</nav>
+
+<h2>1. Introduction</h2>
+<p>
+The <strong>DataTableExt</strong> module transforms HTML tables into fully interactive,
+AJAX-driven data interfaces. It supports sorting, searching, pagination, row selection,
+keyboard accessibility, and responsive resizing.
+</p>
+
+<h2>2. Component Overview</h2>
+
+<pre><code class="language-javascript">qsa('table.dataTable').forEach(table => {
+    Object.assign(table, DataTableExt);
+    table.init();
+});
+</code></pre>
+
+<h2>3. Markup Requirements</h2>
+
+<pre><code class="language-html">&lt;div class="dataTableContainer"&gt;
+    &lt;table id="usersTable"
+           class="dataTable"
+           data-url="/ajax/users"
+           data-args='{"sort":"name"}'
+           selectable&gt;
+
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th data-sort="name"&gt;&lt;button&gt;Name&lt;/button&gt;&lt;/th&gt;
+                &lt;th data-sort="email"&gt;&lt;button&gt;Email&lt;/button&gt;&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+
+        &lt;tbody class="dataTableContent"&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;div class="dataTableControls"&gt;
+    &lt;input type="search" class="search" placeholder="Search…" /&gt;
+&lt;/div&gt;
+
+&lt;div class="dataTableStatus"&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td class="dataTableRecords"&gt;&lt;/td&gt;
+            &lt;td class="dataTablePagination"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2>4. Initialization & Lifecycle</h2>
+
+<pre><code class="language-javascript">init(argsIn) {
+    const url = table.getAttribute('data-url');
+    const args = argsIn ? { ...dataArgs, ...argsIn } : { ...dataArgs };
+
+    ajaxRequest(url, {
+        method: 'GET',
+        parameters: args,
+        onSuccess: transport => {
+            const result = transport.responseJSON || {};
+            table.tableData = result.data || [];
+            this.displayData();
+            this.displayPagination();
+            this.searchHook();
+            this.sortHook();
+            this.selectHook();
+            this.resizeHook();
+        }
+    });
+}
+</code></pre>
+
+<h2>5. Data Loading (AJAX)</h2>
+
+<pre><code class="language-json">{
+  "caption": "Users",
+  "data": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" }
+  ],
+  "dataAttributes": false
+}
+</code></pre>
+
+<h2>6. Rendering & Pagination</h2>
+
+<pre><code class="language-javascript">displayData(start = 0) {
+    const tbody = qs('tbody.dataTableContent');
+    tbody.innerHTML = '';
+
+    table.tableData.slice(start).forEach(obj => {
+        const tr = document.createElement('tr');
+        Object.values(obj).forEach(val => {
+            const td = document.createElement('td');
+            td.textContent = val;
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+}
+</code></pre>
+
+<h2>7. Row Selection System</h2>
+
+<pre><code class="language-javascript">delegate(table, 'tbody tr', 'click', (event, tr) => {
+    if (!table.hasAttribute('select-multiple')) {
+        this.clearSelection();
+    }
+    tr.classList.toggle('highlight');
+});
+</code></pre>
+
+<h2>8. Searching</h2>
+
+<pre><code class="language-javascript">input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+        const value = input.value;
+        if (/^\s*$/.test(value)) table.refreshData();
+        else table.refreshData({ search: value });
+    }
+});
+</code></pre>
+
+<h2>9. Sorting</h2>
+
+<pre><code class="language-javascript">th.addEventListener('click', () => {
+    const sortKey = th.dataset.sort;
+    const descending = th.dataset.order === 'desc';
+
+    table.tableData.sortElementsBy({
+        prop: sortKey,
+        desc: !descending
+    });
+
+    th.dataset.order = descending ? 'asc' : 'desc';
+    this.displayData();
+});
+</code></pre>
+
+<h2>10. Highlight‑Only Mode</h2>
+
+<pre><code class="language-javascript">if (toggle.getAttribute('data-action') === 'highlight only') {
+    rows.forEach(r => {
+        if (!r.classList.contains('highlight')) r.classList.add('hide');
+    });
+}
+</code></pre>
+
+<h2>11. Resizing</h2>
+
+<pre><code class="language-javascript">status.addEventListener('mousedown', evt => {
+    const onMove = e => {
+        const newHeight = e.pageY - container.offsetTop;
+        if (newHeight > 55) {
+            container.style.height = newHeight + 'px';
+        }
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', onMove);
+    });
+});
+</code></pre>
+
+<h2>12. Event Hooks</h2>
+
+<ul>
+    <li><code>:dataLoaded</code> — table finished rendering</li>
+    <li><code>:postSelect</code> — row selection changed</li>
+    <li><code>:postSearch</code> — search executed</li>
+</ul>
+
+<h2>13. Example Implementation</h2>
+
+<pre><code class="language-html">&lt;table id="orders"
+       class="dataTable"
+       data-url="/ajax/orders"
+       selectable&gt;
+&lt;/table&gt;
+
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', () => {
+    setupComponents(document.body);
+});
+&lt;/script&gt;
+</code></pre>
+
+</main>
+
+</body>
+</html>

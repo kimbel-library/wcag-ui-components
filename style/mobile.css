@@ -1,0 +1,172 @@
+/* Hide mobile elements */
+@media not all and (max-width: 1024px) {
+	.mobile {
+		display:none;
+	}
+}
+
+@media all and (max-width: 1024px) {
+	html,body {
+		padding:0;
+		margin:0;
+		height:100%;
+	}
+	.standard { display:none; }
+	#handlerHeader { 
+		padding:5px 0;
+		background-color: rgba(0, 112, 115, 1);
+	}
+	.headerRight { float:none; }
+	.headerLeft img { 
+		margin: 2px 10px 0 7px;
+		width:56px;
+		border-radius:20%;
+	}
+	.headerLeft img:hover { 
+		transform:none;
+	}
+	#pageTitle, #logout { 
+		padding:0;
+		text-align:left;
+	}
+	#pageTitle { font-size:inherit; }
+	#navigation{ padding:5px; }
+	#handlerContent { padding:0; }
+	
+	/* Controls */
+	textarea, input, select, input[type="text"], input[type="password"] {
+		display:block;
+		width:100%;
+		padding:0;
+		box-sizing:border-box;
+	}
+	
+	/* Tabs */
+	div.tabsContainer { 
+		min-width:0 !important; 
+		padding:0 !important;
+	}
+	span.tab { display:none; }
+	div.tabContent {
+		border:0 !important;
+		box-shadow:none !important;
+		padding:0 !important;
+	}
+	div.tabs { padding: 0 !important; }
+	
+	/* DataTable */
+	div.dataTableContainer { max-height:none; }
+	div.dataTableControls { 
+		padding: 5px 0;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		background-color: rgba(0, 112, 115, 1);
+		text-align:center;
+	}
+	div.dataTableControls input { 
+		display:inline; 
+		width:98%;
+	}
+	table.dataTable tbody.dataTableContent_mobile tr:nth-child(odd) td { background-color:rgba(0, 112, 115, .1); }
+	table.dataTable tbody.dataTableContent_mobile td {
+		border:0;
+		height:auto;
+		padding:2px 5px;
+		width:100%;
+	}
+	table.dataTable tbody.dataTableContent_mobile td.noData { background-color:transparent !important; }
+	table.dataTable tbody.dataTableContent_mobile .mobileHeader {
+		font-weight:bold;
+		padding-top:5px;
+	}
+	table.dataTable tbody.dataTableContent_mobile .mobileHeader:first-child { padding-top:0; }
+	table.dataTable thead, table.dataTable tbody.dataTableContent { display:none; }
+	div.dataTableStatus { display:none; }
+	
+	/* Calendar */
+	table.calendarTable span.day {
+		display:block;
+		color:rgba(0, 112, 115, .5);
+		font-size:90%;
+		font-weight:600;
+	}
+	table.calendarTable tbody.dataTableContent_mobile td:first-child {
+		white-space:nowrap;
+		text-align:center;
+		width:1px;
+	}
+	table.calendarTable ul {
+		list-style-type: none;
+		padding:0;
+		margin:0;
+	}
+	/*table.calendarTable span.date, table.calendarTable li.top-separator, table.calendarTable li.totalHours  { display:none; }*/
+	
+	/* Modal */
+	#modalWindow {
+		border:0;
+		border-radius:0;
+		z-index: 100;
+		width: 100%;
+		min-height:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		transform:translate(0,0);
+	}
+	#modalBackground {
+	    position: fixed;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+		z-index: 90;
+		background-color:white;
+		opacity: 1;
+	}
+	#modalWindow content { padding:5px 0; }
+	#modalWindow controls {
+		padding:0;
+		width:100%;
+		position:fixed;
+		bottom:0;
+	}
+	#modalWindow span.expand { display:none; }
+	#modalWindow titlebar, #modalWindow controls {
+		text-align:center;
+		background-color: rgba(0, 112, 115, 0.5); 
+		color: black;
+		padding:5px 0;
+	}
+	#modalWindow controls input { 
+		display:inline;
+		width:48%;
+	}
+	
+	/* Alert */
+	.box { border-radius: 0; }
+	.messagebox { height:100%; width:100%; }
+	
+	/* Specific Elements */
+	#requestsControls input {
+		width:32%;
+	}
+	.logout { padding-top:20px; text-align:center; }
+	/* Login */
+	.loginContainer {
+		display:block;
+	}
+	.loginContainer div:first-child {
+		margin-right:0;
+	}
+	.loginLeft {
+		border-right: 0;
+		padding-bottom:50px;
+		flex:none;
+	}
+	input#persist {
+	    display: inline;
+	    width: auto;
+	}
+}

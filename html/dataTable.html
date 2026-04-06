@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<HTML lang="en-US">
+<HEAD>
+	<META http-equiv="x-ua-compatible" content="IE=edge">
+	<META name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<META http-equiv="content-type" content="text/html; charset=utf-8">
+	<TITLE>DataTable Test</TITLE>
+	<SCRIPT type="text/javascript" src="../js/components.js"></SCRIPT>
+	<LINK media="screen" type="text/css" href="../style/alert.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/common.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/dataTable.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/mobile.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/modal.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/tabs.css" rel="stylesheet">
+	<LINK media="screen" type="text/css" href="../style/vtab.css" rel="stylesheet">
+</HEAD>
+<BODY>
+<!-- Data Table Container -->
+<div class="dataTableContainer">
+
+    <table
+        id="exampleTable"
+        class="dataTable"
+		data-url="../json/dataTable.json"
+        data-args='{"status":"active"}'
+        toggle-highlight="true"
+        select-multiple="true"
+        viewall="true"
+    >
+        <caption>Example Data Table</caption>
+
+        <thead class="dataTableHeaders">
+            <tr>
+                <th data-sort="id" data-type="numeric">
+                    ID
+                    <button type="button" aria-label="Sort Column: ID" class="sort">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                    </button>
+                </th>
+
+                <th data-sort="data" data-type="alpha">
+                    Data
+                    <button type="button" aria-label="Sort Column: Name" class="sort">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                    </button>
+                </th>
+
+                <th data-sort="timestamp" data-type="alpha">
+                    Timestamp
+                    <button type="button" aria-label="Sort Column: Created" class="sort">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="dataTableContent">
+            <!-- Data rows will be inserted dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Table Status / Footer Controls -->
+<div class="dataTableStatus">
+    <table>
+		<tr>
+		    <!-- Clear Selection -->
+		    <td class="dataTableToggle" data-action="clear">
+		      <button type="button" aria-label="Clear Selection" title="Clear Selection">
+		        <i class="fa fa-eraser" aria-hidden="true"></i>
+		      </button>
+		    </td>
+		
+		    <!-- Toggle Highlight -->
+		    <td class="dataTableToggle" data-action="highlight only">
+		      <button type="button" aria-label="Toggle Highlight" title="Toggle Highlight">
+		        <i class="fa fa-bookmark" aria-hidden="true"></i>
+		      </button>
+		    </td>
+		
+		    <!-- Records -->
+		    <td class="dataTableRecords"></td>
+		
+		    <!-- Pagination -->
+		    <td class="dataTablePagination"></td>
+		  </tr>
+    </table>
+</div>
+<div class="dataTableControls">
+	<input type="SUBMIT" value="Select Enabled Control" class="select-enabled" data-action="open" disabled="disabled">
+	<input type="BUTTON" value="Launch Modal" class="modal" data-url="/ajax/modals/chargeback.php" data-action="new">
+	<input type="SEARCH" class="search" name="search" value="" placeholder="Search by [PARAM]"></div>
+</div>
+</body>
+</html>
